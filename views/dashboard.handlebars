@@ -1,44 +1,21 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
-</div>
+  
+<section class="new-post-section">
+    <button type="submit" class="btn" id="create-new-post">+ Create new post</button>
+</section>
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Post:</h3>
 
-    <form class="form new-post-form">
-      <div class="form-group">
-        <label for="project-name">Post name:</label>
-        <input class="form-input" type="text" id="post-name" name="post-name" />
-      </div>
-      <div class="form-group">
-        <label for="post-desc">description:</label>
-        <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
+{{#if posts.length}}
+<section>
+    <h2>Your Dashboard</h2>
+    <ul class="post-list">
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <a href="/dashboard/edit/{{post.id}}" class="edit-link">edit post</a>
+        </li>
+        {{/each}}
+    </ul>
+</section>
+{{/if}}
 
-  {{#if post.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Posts:</h3>
-
-    {{#each post as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{post.id}}">{{post.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
-
-<script src="./js/profile.js"></script>
+<script src="/javascript/create-post.js"></script>
